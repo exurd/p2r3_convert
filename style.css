@@ -63,7 +63,7 @@ body {
   align-items: center;
   width: 50vw;
   min-height: 70vh;
-  padding: 10px 50px;
+  padding: 0.8em 7em;
 }
 .format-container h2 {
   text-align: center;
@@ -90,6 +90,7 @@ body {
 .format-list {
   display: flex;
   flex-flow: column nowrap;
+  width: 100%;
   align-items: center;
   background-color: white;
   border-radius: 10px;
