@@ -11,12 +11,15 @@ jobs:
   build-electron:
     runs-on: ${{ matrix.os }}
 
+    env:
+      VITE_COMMIT_SHA: ${{ github.sha }}
+
     strategy:
       matrix:
         include:
           - os: ubuntu-24.04
             platform: linux
-          - os: windows-latest
+          - os: windows-2025
             platform: win
           - os: macos-15
             platform: mac
@@ -36,10 +39,8 @@ jobs:
       - name: Install dependencies
         run: bun i --frozen-lockfile
 
-      - name: Build (for tests)
-        run: |
-          export VITE_COMMIT_SHA=${{ github.sha }}
-          bun run build
+      - name: Build (for testing)
+        run:  bun run build
 
       - name: Generate cache
         run: bun run cache:build
@@ -66,7 +67,7 @@ jobs:
             release/*.deb
           retention-days: 7
       
-      - name: Publish GitHub Release
+      - name: Publish GitHub Release (if new tag)
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
