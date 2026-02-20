@@ -16,10 +16,14 @@ jobs:
 
     strategy:
       matrix:
-        include:
+        os: [ubuntu-24.04, macos-14]
+        platform: [win, mac, linux]
+        exclude:
+          - os: macos-14
+            platform: win
+          - os: macos-14
+            platform: linux
           - os: ubuntu-24.04
-            platform: [linux, win]
-          - os: macos-15
             platform: mac
 
     steps:
