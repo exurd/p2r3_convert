@@ -3,7 +3,7 @@ name: Build Electron Distributions
 on:
   workflow_dispatch:
   push:
-    branches: ["master"]
+    branches: ["master", "actions_build-electron_pray-for-me"]
     tags: ["*"]
   pull_request:
 
